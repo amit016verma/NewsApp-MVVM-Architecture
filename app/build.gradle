@@ -1,16 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
     namespace 'com.amitverma.newsapp'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.amitverma.newsapp"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -34,11 +35,53 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Recycler View for listing
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
+
+    // Glide for image loading
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    // retrofit for networking
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+    // ViewModel and LiveData
+//    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    // ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation "com.google.dagger:dagger:2.42"
+    kapt "com.google.dagger:dagger-compiler:2.42"
+    implementation 'androidx.browser:browser:1.5.0'
+    // Room Database dependencies
+    implementation "androidx.room:room-runtime:2.5.0"
+    kapt "androidx.room:room-compiler:2.5.0"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.5.0"
+    // paging library
+    implementation "androidx.paging:paging-runtime:3.1.1"
+
+    // Local Unit tests
     testImplementation 'junit:junit:4.13.2'
+    testImplementation "org.mockito:mockito-core:4.9.0"
+    kaptTest "com.google.dagger:dagger-compiler:2.42"
+    testImplementation "android.arch.core:core-testing:1.1.1"
+    testImplementation "org.hamcrest:hamcrest-library:2.2"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1'
+    testImplementation 'app.cash.turbine:turbine:0.12.1'
+    testImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.5.1"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.5.1"
+    androidTestImplementation "org.mockito:mockito-core:4.9.0"
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1'
+    androidTestImplementation "org.mockito:mockito-core:4.9.0"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:2.42"
 }
