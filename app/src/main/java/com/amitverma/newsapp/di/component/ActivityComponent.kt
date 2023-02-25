@@ -1,11 +1,9 @@
 package com.amitverma.newsapp.di.component
 
-import com.amitverma.newsapp.data.repository.NewsRepository
-import com.amitverma.newsapp.data.repository.NewsSourceRepository
-import com.amitverma.newsapp.data.repository.PagingTopHeadlineRepository
-import com.amitverma.newsapp.data.repository.TopHeadlineRepository
+import com.amitverma.newsapp.data.repository.*
 import com.amitverma.newsapp.di.ActivityScope
 import com.amitverma.newsapp.di.module.ActivityModule
+import com.amitverma.newsapp.ui.country.CountryListActivity
 import com.amitverma.newsapp.ui.newsListScreen.NewsListActivity
 import com.amitverma.newsapp.ui.pagination.PaginationTopHeadlineActivity
 import com.amitverma.newsapp.ui.sources.SourcesActivity
@@ -24,6 +22,8 @@ interface ActivityComponent {
 
     fun inject(activity: NewsListActivity)
 
+    fun inject(activity: CountryListActivity)
+
     fun getTopHeadlineRepository(): TopHeadlineRepository
 
     fun getPagingTopHeadlineRepository(): PagingTopHeadlineRepository
@@ -31,4 +31,8 @@ interface ActivityComponent {
     fun getNewsSourceRepository(): NewsSourceRepository
 
     fun getNewsRepository(): NewsRepository
+
+    fun getLanguageRepository(): LanguageRepository
+
+    fun getCountryRepository(): CountryRepository
 }

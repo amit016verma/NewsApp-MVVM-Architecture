@@ -4,12 +4,11 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.amitverma.newsapp.data.local.NewsAppDatabase
-import com.amitverma.newsapp.data.repository.NewsRepository
-import com.amitverma.newsapp.data.repository.NewsSourceRepository
-import com.amitverma.newsapp.data.repository.PagingTopHeadlineRepository
-import com.amitverma.newsapp.data.repository.TopHeadlineRepository
+import com.amitverma.newsapp.data.repository.*
 import com.amitverma.newsapp.di.ActivityContext
 import com.amitverma.newsapp.ui.base.ViewModelProviderFactory
+import com.amitverma.newsapp.ui.country.CountriesListAdapter
+import com.amitverma.newsapp.ui.country.CountryListViewModel
 import com.amitverma.newsapp.ui.newsListScreen.NewsListAdapter
 import com.amitverma.newsapp.ui.newsListScreen.NewsListViewModel
 import com.amitverma.newsapp.ui.pagination.PagingTopHeadlineAdapter
@@ -79,6 +78,20 @@ class ActivityModule(private val activity: AppCompatActivity) {
             NewsListViewModel(newsRepository, networkHelper, dispatcherProvider)
         })[NewsListViewModel::class.java]
     }
+
+    @Provides
+    fun provideCountryListViewModel(
+        countryRepository: CountryRepository,
+        networkHelper: NetworkHelper,
+        dispatcherProvider: DispatcherProvider
+    ): CountryListViewModel {
+        return ViewModelProvider(activity, ViewModelProviderFactory(CountryListViewModel::class) {
+            CountryListViewModel(countryRepository, networkHelper, dispatcherProvider)
+        })[CountryListViewModel::class.java]
+    }
+
+    @Provides
+    fun provideCountriesListAdapter() = CountriesListAdapter(ArrayList())
 
     @Provides
     fun provideNewsSourcesListAdapter() = NewsSourcesListAdapter(ArrayList())

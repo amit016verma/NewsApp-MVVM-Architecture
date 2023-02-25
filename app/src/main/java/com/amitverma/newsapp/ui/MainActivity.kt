@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.amitverma.newsapp.R
 import com.amitverma.newsapp.databinding.ActivityMainBinding
+import com.amitverma.newsapp.ui.country.CountryListActivity
 import com.amitverma.newsapp.ui.pagination.PaginationTopHeadlineActivity
 import com.amitverma.newsapp.ui.sources.SourcesActivity
 import com.amitverma.newsapp.ui.topheadline.TopHeadlineActivity
@@ -29,6 +30,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.newsSourceButton.setOnClickListener {
             startActivity(SourcesActivity.getStartIntent(this@MainActivity))
+        }
+
+        binding.countriesButton.setOnClickListener {
+            startActivity(CountryListActivity.getStartIntent(this@MainActivity))
         }
     }
 }
