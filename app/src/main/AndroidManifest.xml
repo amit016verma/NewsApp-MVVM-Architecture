@@ -46,6 +46,23 @@
                 android:value="" />
         </activity>
 
+        <activity
+            android:name=".ui.newsListScreen.NewsListActivity"
+            android:exported="false"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".ui.sources.SourcesActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
     </application>
 
 </manifest>

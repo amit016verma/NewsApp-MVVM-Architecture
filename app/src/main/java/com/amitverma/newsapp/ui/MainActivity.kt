@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.amitverma.newsapp.R
 import com.amitverma.newsapp.databinding.ActivityMainBinding
 import com.amitverma.newsapp.ui.pagination.PaginationTopHeadlineActivity
+import com.amitverma.newsapp.ui.sources.SourcesActivity
 import com.amitverma.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.topHeadlinePaginationButton.setOnClickListener {
             startActivity(PaginationTopHeadlineActivity.getStartIntent(this@MainActivity))
+        }
+
+        binding.newsSourceButton.setOnClickListener {
+            startActivity(SourcesActivity.getStartIntent(this@MainActivity))
         }
     }
 }
