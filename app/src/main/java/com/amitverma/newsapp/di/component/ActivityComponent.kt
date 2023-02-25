@@ -7,6 +7,7 @@ import com.amitverma.newsapp.ui.country.CountryListActivity
 import com.amitverma.newsapp.ui.language.LanguageActivity
 import com.amitverma.newsapp.ui.newsListScreen.NewsListActivity
 import com.amitverma.newsapp.ui.pagination.PaginationTopHeadlineActivity
+import com.amitverma.newsapp.ui.search.SearchActivity
 import com.amitverma.newsapp.ui.sources.SourcesActivity
 import com.amitverma.newsapp.ui.topheadline.TopHeadlineActivity
 import dagger.Component
@@ -27,6 +28,8 @@ interface ActivityComponent {
 
     fun inject(activity: LanguageActivity)
 
+    fun inject(activity: SearchActivity)
+
     fun getTopHeadlineRepository(): TopHeadlineRepository
 
     fun getPagingTopHeadlineRepository(): PagingTopHeadlineRepository
@@ -38,4 +41,6 @@ interface ActivityComponent {
     fun getLanguageRepository(): LanguageRepository
 
     fun getCountryRepository(): CountryRepository
+
+    fun getSourceRepository(): SearchRepository
 }

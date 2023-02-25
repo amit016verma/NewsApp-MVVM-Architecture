@@ -79,6 +79,14 @@
                 android:value="" />
         </activity>
 
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        ßßß
     </application>
 
 </manifest>

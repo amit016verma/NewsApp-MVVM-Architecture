@@ -15,6 +15,7 @@ import com.amitverma.newsapp.ui.newsListScreen.NewsListAdapter
 import com.amitverma.newsapp.ui.newsListScreen.NewsListViewModel
 import com.amitverma.newsapp.ui.pagination.PagingTopHeadlineAdapter
 import com.amitverma.newsapp.ui.pagination.PagingTopHeadlineViewModel
+import com.amitverma.newsapp.ui.search.SearchViewModel
 import com.amitverma.newsapp.ui.sources.NewsSourcesListAdapter
 import com.amitverma.newsapp.ui.sources.SourcesViewModel
 import com.amitverma.newsapp.ui.topheadline.TopHeadlineAdapter
@@ -102,6 +103,18 @@ class ActivityModule(private val activity: AppCompatActivity) {
             LanguageListViewModel(languageRepository, networkHelper, dispatcherProvider)
         })[LanguageListViewModel::class.java]
     }
+
+    @Provides
+    fun provideSearchViewModel(
+        searchRepository: SearchRepository,
+        networkHelper: NetworkHelper,
+        dispatcherProvider: DispatcherProvider
+    ): SearchViewModel {
+        return ViewModelProvider(activity, ViewModelProviderFactory(SearchViewModel::class) {
+            SearchViewModel(searchRepository, networkHelper, dispatcherProvider)
+        })[SearchViewModel::class.java]
+    }
+
 
     @Provides
     fun provideLanguageListAdapter() = LanguageListAdapter(ArrayList())

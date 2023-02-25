@@ -7,6 +7,7 @@ import com.amitverma.newsapp.databinding.ActivityMainBinding
 import com.amitverma.newsapp.ui.country.CountryListActivity
 import com.amitverma.newsapp.ui.language.LanguageActivity
 import com.amitverma.newsapp.ui.pagination.PaginationTopHeadlineActivity
+import com.amitverma.newsapp.ui.search.SearchActivity
 import com.amitverma.newsapp.ui.sources.SourcesActivity
 import com.amitverma.newsapp.ui.topheadline.TopHeadlineActivity
 
@@ -39,6 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.languageButton.setOnClickListener {
             startActivity(LanguageActivity.getStartIntent(this@MainActivity))
+        }
+
+        binding.searchButton.setOnClickListener {
+            startActivity(SearchActivity.getStartIntent(this@MainActivity))
         }
     }
 }
