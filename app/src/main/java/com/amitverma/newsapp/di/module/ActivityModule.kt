@@ -9,6 +9,8 @@ import com.amitverma.newsapp.di.ActivityContext
 import com.amitverma.newsapp.ui.base.ViewModelProviderFactory
 import com.amitverma.newsapp.ui.country.CountriesListAdapter
 import com.amitverma.newsapp.ui.country.CountryListViewModel
+import com.amitverma.newsapp.ui.language.LanguageListAdapter
+import com.amitverma.newsapp.ui.language.LanguageListViewModel
 import com.amitverma.newsapp.ui.newsListScreen.NewsListAdapter
 import com.amitverma.newsapp.ui.newsListScreen.NewsListViewModel
 import com.amitverma.newsapp.ui.pagination.PagingTopHeadlineAdapter
@@ -89,6 +91,20 @@ class ActivityModule(private val activity: AppCompatActivity) {
             CountryListViewModel(countryRepository, networkHelper, dispatcherProvider)
         })[CountryListViewModel::class.java]
     }
+
+    @Provides
+    fun provideLanguageListViewModel(
+        languageRepository: LanguageRepository,
+        networkHelper: NetworkHelper,
+        dispatcherProvider: DispatcherProvider
+    ): LanguageListViewModel {
+        return ViewModelProvider(activity, ViewModelProviderFactory(LanguageListViewModel::class) {
+            LanguageListViewModel(languageRepository, networkHelper, dispatcherProvider)
+        })[LanguageListViewModel::class.java]
+    }
+
+    @Provides
+    fun provideLanguageListAdapter() = LanguageListAdapter(ArrayList())
 
     @Provides
     fun provideCountriesListAdapter() = CountriesListAdapter(ArrayList())
