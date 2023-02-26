@@ -25,7 +25,7 @@ This is a News application with MVVM Architecture and Jetpack Components with un
 - Instant search using Flow operators
   - Debounce
   - Filter
-  - DisctintUntilChanged
+  - DistinctUntilChanged
   - FlatMapLatest
 - Offline news
 - Pagination
@@ -140,14 +140,14 @@ kaptAndroidTest "com.google.dagger:dagger-compiler:2.42"
 ```
 
 <p align="center">
-<img alt="main_screen" src="https://user-images.githubusercontent.com/15169743/219933272-3d703582-df20-49d4-b0a4-c6c66a563dc3.png" width="360"  height="640"> 
+<img alt="main_screen" src="https://user-images.githubusercontent.com/15169743/221393544-6343e574-c0de-4bab-b421-2ab97202fdba.png" width="360"  height="640"> &nbsp;&nbsp;&nbsp;&nbsp;
 <img alt="search_screen" src="https://user-images.githubusercontent.com/15169743/219934168-3a3c7f6e-bd3f-429f-acd3-e6f946454f01.png" width="360"  height="640" marginLeft="20">
 </p>
 
 <p align="center">
 <img alt="top_headline" src="https://user-images.githubusercontent.com/15169743/219934213-64e7efd2-efd2-4a5f-a4f6-178218007e2e.png" width="360"  height="640">
-
-<img alt="news_source" src="https://user-images.githubusercontent.com/15169743/219934393-c9159997-0c49-4842-a543-8546adc9f7fb.png" width="360"  height="640"  marginLeft="20">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img alt="news_source" src="https://user-images.githubusercontent.com/15169743/221393557-c2a42c70-d350-4fcb-8a21-f4276cbf62eb.png" width="360"  height="640"  marginLeft="20">
 </p>
 
 
