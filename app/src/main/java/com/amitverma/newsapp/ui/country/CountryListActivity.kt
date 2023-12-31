@@ -6,20 +6,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amitverma.newsapp.data.local.entity.Country
 import com.amitverma.newsapp.databinding.ActivityCountryListBinding
-import com.amitverma.newsapp.di.component.ActivityComponent
 import com.amitverma.newsapp.ui.base.BaseActivity
 import com.amitverma.newsapp.ui.newsListScreen.NewsListActivity
 import com.amitverma.newsapp.utils.AppConstant
 import com.amitverma.newsapp.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class CountryListActivity : BaseActivity<CountryListViewModel, ActivityCountryListBinding>() {
 
 
@@ -64,13 +66,15 @@ class CountryListActivity : BaseActivity<CountryListViewModel, ActivityCountryLi
         }
     }
 
+    override fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[CountryListViewModel::class.java]
+
+    }
+
     private fun renderList(countryList: List<Country>) {
         countriesListAdapter.updateList(countryList)
     }
 
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.inject(this)
-    }
 
     override fun setupView(savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView

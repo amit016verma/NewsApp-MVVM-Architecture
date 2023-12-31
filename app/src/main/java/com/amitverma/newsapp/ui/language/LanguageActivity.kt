@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.selection.Selection
@@ -18,15 +19,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amitverma.newsapp.data.model.Language
 import com.amitverma.newsapp.databinding.ActivityLanguageBinding
-import com.amitverma.newsapp.di.component.ActivityComponent
 import com.amitverma.newsapp.ui.base.BaseActivity
 import com.amitverma.newsapp.ui.newsListScreen.NewsListActivity
 import com.amitverma.newsapp.utils.AppConstant
 import com.amitverma.newsapp.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class LanguageActivity : BaseActivity<LanguageListViewModel, ActivityLanguageBinding>() {
 
     @Inject
@@ -132,13 +133,12 @@ class LanguageActivity : BaseActivity<LanguageListViewModel, ActivityLanguageBin
         }
     }
 
-    private fun renderList(languageList: List<Language>) {
-        languageListAdapter.updateList(languageList)
+    override fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[LanguageListViewModel::class.java]
     }
 
-
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.inject(this)
+    private fun renderList(languageList: List<Language>) {
+        languageListAdapter.updateList(languageList)
     }
 
     override fun setupView(savedInstanceState: Bundle?) {

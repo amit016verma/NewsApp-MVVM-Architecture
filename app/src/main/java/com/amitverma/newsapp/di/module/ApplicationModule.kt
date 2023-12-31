@@ -1,14 +1,11 @@
 package com.amitverma.newsapp.di.module
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.amitverma.newsapp.BuildConfig
-import com.amitverma.newsapp.NewsApplication
 import com.amitverma.newsapp.data.api.AuthTokenInterceptor
 import com.amitverma.newsapp.data.api.NetworkService
 import com.amitverma.newsapp.data.local.NewsAppDatabase
-import com.amitverma.newsapp.di.ApplicationContext
 import com.amitverma.newsapp.di.BASEURL
 import com.amitverma.newsapp.di.DatabaseName
 import com.amitverma.newsapp.di.NetworkAPIKey
@@ -18,6 +15,9 @@ import com.amitverma.newsapp.utils.NetworkHelper
 import com.amitverma.newsapp.utils.network.NetworkHelperImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,18 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(private val application: NewsApplication) {
+@InstallIn(SingletonComponent::class)
+object ApplicationModule {
 
-    @Provides
-    @Singleton
-    fun provideApplication(): Application = application
-
-
-    @ApplicationContext
-    @Provides
-    fun provideContext(): Context {
-        return application
-    }
 
     @Provides
     @Singleton
@@ -78,9 +69,12 @@ class ApplicationModule(private val application: NewsApplication) {
 
     @Provides
     @Singleton
-    fun provideNewsAppDatabase(@DatabaseName databaseName: String): NewsAppDatabase =
+    fun provideNewsAppDatabase(
+        @ApplicationContext context: Context,
+        @DatabaseName databaseName: String
+    ): NewsAppDatabase =
         Room.databaseBuilder(
-            application, NewsAppDatabase::class.java, databaseName
+            context, NewsAppDatabase::class.java, databaseName
         ).build()
 
     @Provides
@@ -106,4 +100,22 @@ class ApplicationModule(private val application: NewsApplication) {
     @Singleton
     @BASEURL
     fun provideNetWorkBaseUrl(): String = "https://newsapi.org/v2/"
+
+    @Provides
+    @Singleton
+    fun provideTopHeadlinesDao(newsAppDatabase: NewsAppDatabase) = newsAppDatabase.topHeadlinesDao()
+
+    @Provides
+    @Singleton
+    fun provideNewsSourceDao(newsAppDatabase: NewsAppDatabase) = newsAppDatabase.newsSourceDao()
+
+    @Provides
+    @Singleton
+    fun provideLanguageDao(newsAppDatabase: NewsAppDatabase) = newsAppDatabase.languageDao()
+
+    @Provides
+    @Singleton
+    fun provideCountryDao(newsAppDatabase: NewsAppDatabase) = newsAppDatabase.countryDao()
+
+
 }

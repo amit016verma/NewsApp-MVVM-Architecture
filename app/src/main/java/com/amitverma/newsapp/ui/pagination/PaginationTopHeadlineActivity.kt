@@ -8,18 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amitverma.newsapp.data.model.topheadlines.APIArticle
 import com.amitverma.newsapp.databinding.ActivityPaginationTopHeadlineBinding
-import com.amitverma.newsapp.di.component.ActivityComponent
 import com.amitverma.newsapp.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class PaginationTopHeadlineActivity :
     BaseActivity<PagingTopHeadlineViewModel, ActivityPaginationTopHeadlineBinding>() {
 
@@ -47,8 +49,8 @@ class PaginationTopHeadlineActivity :
 
     }
 
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.inject(this)
+    override fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[PagingTopHeadlineViewModel::class.java]
     }
 
     override fun setupView(savedInstanceState: Bundle?) {

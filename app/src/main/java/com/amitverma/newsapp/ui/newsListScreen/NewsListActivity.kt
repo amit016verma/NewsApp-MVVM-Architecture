@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,13 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.amitverma.newsapp.data.local.entity.Article
 import com.amitverma.newsapp.data.model.Language
 import com.amitverma.newsapp.databinding.ActivityNewsListBinding
-import com.amitverma.newsapp.di.component.ActivityComponent
 import com.amitverma.newsapp.ui.base.BaseActivity
 import com.amitverma.newsapp.utils.AppConstant
 import com.amitverma.newsapp.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class NewsListActivity : BaseActivity<NewsListViewModel, ActivityNewsListBinding>() {
 
 
@@ -118,16 +120,16 @@ class NewsListActivity : BaseActivity<NewsListViewModel, ActivityNewsListBinding
         }
     }
 
+    override fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[NewsListViewModel::class.java]
+    }
+
     private fun renderList(newsList: List<Article>) {
         newsLisAdapter.addData(newsList)
         newsLisAdapter.notifyDataSetChanged()
         println("newsLisAdapter count::" + newsLisAdapter.itemCount + " newsList size ::" + newsList.size)
     }
 
-
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.inject(this)
-    }
 
     override fun setupView(savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView

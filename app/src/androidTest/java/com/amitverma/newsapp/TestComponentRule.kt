@@ -19,7 +19,7 @@ class TestComponentRule(private val context: Context) : TestRule {
         testComponent = DaggerTestComponent.builder()
             .applicationTestModule(ApplicationTestModule(application))
             .build()
-        application.setTestComponent(testComponent!!)
+//        application.setTestComponent(testComponent!!)
     }
 
     override fun apply(base: Statement, description: Description): Statement {
