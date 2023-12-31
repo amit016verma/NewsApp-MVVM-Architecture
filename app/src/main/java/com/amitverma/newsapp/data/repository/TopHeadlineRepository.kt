@@ -4,13 +4,13 @@ import com.amitverma.newsapp.data.api.NetworkService
 import com.amitverma.newsapp.data.local.dao.TopHeadlinesDao
 import com.amitverma.newsapp.data.local.entity.Article
 import com.amitverma.newsapp.data.model.topheadlines.APIArticle
-import com.amitverma.newsapp.di.ActivityScope
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-@ActivityScope
+@ViewModelScoped
 class TopHeadlineRepository @Inject constructor(
     private val networkService: NetworkService, private val topHeadlinesDao: TopHeadlinesDao
 ) {

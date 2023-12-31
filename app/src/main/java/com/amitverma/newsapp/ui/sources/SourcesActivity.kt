@@ -7,20 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amitverma.newsapp.data.local.entity.NewsSource
 import com.amitverma.newsapp.databinding.ActivitySourcesBinding
-import com.amitverma.newsapp.di.component.ActivityComponent
 import com.amitverma.newsapp.ui.base.BaseActivity
 import com.amitverma.newsapp.ui.newsListScreen.NewsListActivity
 import com.amitverma.newsapp.utils.AppConstant
 import com.amitverma.newsapp.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SourcesActivity : BaseActivity<SourcesViewModel, ActivitySourcesBinding>() {
 
 
@@ -65,14 +67,15 @@ class SourcesActivity : BaseActivity<SourcesViewModel, ActivitySourcesBinding>()
         }
     }
 
+    override fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[SourcesViewModel::class.java]
+    }
+
     private fun renderList(newsList: List<NewsSource>) {
         sourcesAdapter.updateList(newsList)
         println("sourcesAdapter count ::" + sourcesAdapter.itemCount + " newsList size ::" + newsList.size)
     }
 
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.inject(this)
-    }
 
     override fun setupView(savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView

@@ -8,9 +8,12 @@ import com.amitverma.newsapp.data.repository.PagingTopHeadlineRepository
 import com.amitverma.newsapp.ui.base.BaseViewModel
 import com.amitverma.newsapp.utils.AppConstant
 import com.amitverma.newsapp.utils.NetworkHelper
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class PagingTopHeadlineViewModel(
+@HiltViewModel
+class PagingTopHeadlineViewModel @Inject constructor(
     topHeadlineRepository: PagingTopHeadlineRepository, networkHelper: NetworkHelper
 ) : BaseViewModel<List<*>>(networkHelper) {
 

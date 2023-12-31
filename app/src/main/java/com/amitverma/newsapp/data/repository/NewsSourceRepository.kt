@@ -4,13 +4,13 @@ import com.amitverma.newsapp.data.api.NetworkService
 import com.amitverma.newsapp.data.local.dao.NewsSourceDao
 import com.amitverma.newsapp.data.local.entity.NewsSource
 import com.amitverma.newsapp.data.model.newssources.APINewsSource
-import com.amitverma.newsapp.di.ActivityScope
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-@ActivityScope
+@ViewModelScoped
 class NewsSourceRepository @Inject constructor(
     private val networkService: NetworkService, private val newsSourceDao: NewsSourceDao
 ) {

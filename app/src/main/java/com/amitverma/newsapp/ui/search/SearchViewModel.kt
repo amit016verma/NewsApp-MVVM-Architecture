@@ -8,11 +8,14 @@ import com.amitverma.newsapp.ui.base.BaseViewModel
 import com.amitverma.newsapp.utils.DispatcherProvider
 import com.amitverma.newsapp.utils.NetworkHelper
 import com.amitverma.newsapp.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel(
+@HiltViewModel
+class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository,
     networkHelper: NetworkHelper,
     private val dispatcherProvider: DispatcherProvider

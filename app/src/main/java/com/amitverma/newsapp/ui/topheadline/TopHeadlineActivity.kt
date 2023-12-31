@@ -9,18 +9,20 @@ import android.view.View
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amitverma.newsapp.data.local.entity.Article
 import com.amitverma.newsapp.databinding.ActivityTopHeadlineBinding
-import com.amitverma.newsapp.di.component.ActivityComponent
 import com.amitverma.newsapp.ui.base.BaseActivity
 import com.amitverma.newsapp.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class TopHeadlineActivity : BaseActivity<TopHeadlineViewModel, ActivityTopHeadlineBinding>() {
 
     @Inject
@@ -69,9 +71,10 @@ class TopHeadlineActivity : BaseActivity<TopHeadlineViewModel, ActivityTopHeadli
 
     }
 
-    override fun injectDependencies(activityComponent: ActivityComponent) {
-        activityComponent.inject(this)
+    override fun setupViewModel() {
+        viewModel = ViewModelProvider(this)[TopHeadlineViewModel::class.java]
     }
+
 
     override fun setupView(savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView
