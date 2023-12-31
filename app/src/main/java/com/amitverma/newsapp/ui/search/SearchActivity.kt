@@ -9,22 +9,20 @@ import android.view.View
 import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amitverma.newsapp.data.model.topheadlines.APIArticle
 import com.amitverma.newsapp.databinding.ActivitySearchBinding
+import com.amitverma.newsapp.di.component.ActivityComponent
 import com.amitverma.newsapp.ui.base.BaseActivity
 import com.amitverma.newsapp.ui.newsListScreen.NewsListAdapter
 import com.amitverma.newsapp.utils.Status
 import com.amitverma.newsapp.utils.getQueryTextChangeStateFlow
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
 
     @Inject
@@ -68,16 +66,15 @@ class SearchActivity : BaseActivity<SearchViewModel, ActivitySearchBinding>() {
         }
     }
 
-    override fun setupViewModel() {
-        viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
-    }
-
 
     private fun renderList(newsList: List<APIArticle>) {
         newsLisAdapter.replaceData(newsList)
         newsLisAdapter.notifyDataSetChanged()
     }
 
+    override fun injectDependencies(activityComponent: ActivityComponent) {
+        activityComponent.inject(this)
+    }
 
     override fun setupView(savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView

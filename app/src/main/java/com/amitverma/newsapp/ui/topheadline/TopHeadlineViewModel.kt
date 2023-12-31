@@ -8,14 +8,11 @@ import com.amitverma.newsapp.utils.AppConstant
 import com.amitverma.newsapp.utils.DispatcherProvider
 import com.amitverma.newsapp.utils.NetworkHelper
 import com.amitverma.newsapp.utils.Resource
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class TopHeadlineViewModel @Inject constructor(
+class TopHeadlineViewModel(
     private val topHeadlineRepository: TopHeadlineRepository,
     networkHelper: NetworkHelper,
     private val dispatcherProvider: DispatcherProvider

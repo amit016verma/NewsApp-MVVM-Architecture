@@ -1,22 +1,23 @@
 package com.amitverma.newsapp.di
 
-import java.lang.annotation.Documented
-import java.lang.annotation.RetentionPolicy
-
 import javax.inject.Qualifier
 
+@Qualifier
+@Retention(AnnotationRetention.SOURCE)
+annotation class ApplicationContext
 
 @Qualifier
-@Documented
-@java.lang.annotation.Retention(RetentionPolicy.RUNTIME)
+@Retention(AnnotationRetention.SOURCE)
+annotation class ActivityContext
+
+@Qualifier
+@Retention(AnnotationRetention.SOURCE)
 annotation class DatabaseName
 
 @Qualifier
-@Documented
-@java.lang.annotation.Retention(RetentionPolicy.RUNTIME)
+@Retention(AnnotationRetention.SOURCE)
 annotation class NetworkAPIKey
 
 @Qualifier
-@Documented
-@java.lang.annotation.Retention(RetentionPolicy.RUNTIME)
+@Retention(AnnotationRetention.SOURCE)
 annotation class BASEURL

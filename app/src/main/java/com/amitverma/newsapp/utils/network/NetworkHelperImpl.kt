@@ -3,10 +3,10 @@ package com.amitverma.newsapp.utils.network
 import android.content.Context
 import android.net.ConnectivityManager
 import android.util.Log
+import com.amitverma.newsapp.di.ApplicationContext
 import com.amitverma.newsapp.utils.NetworkHelper
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
-import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.ConnectException
